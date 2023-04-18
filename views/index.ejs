@@ -12,12 +12,14 @@
         <h1><%= ThisDay %></h1>
     </div>
     <div class="box">
+        <form action="/delete" method="post">
             <% newListItem.forEach((element) =>{ %>
-        <div class="item">
-            <input type="checkbox">
-            <p> <%= element %></p>
-        </div>
+                <div class="item">
+                    <input type="checkbox" name="checkbox"  value="<%= element._id %>" onclick="this.form.submit()">
+                    <p> <%= element.item %></p>
+                </div>
             <%})%>
+        </form>        
     
         <form class="item" action="/", method="post">
             <input type="text" name="newList" placeholder="TO DO" autocomplete="false">
