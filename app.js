@@ -3,14 +3,13 @@ const bodyParser = require("body-parser");
 const port = 8080;
 const mongoose = require("mongoose");
 const app = express();
-
 var items = [];
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static('public'));
 
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB");
+mongoose.connect("mongodb+srv://admin-thaksin:AQS0dVydIEe5PKdV@cluster0.dkowvdw.mongodb.net/todolistDB");
 
 const itemSchema = new mongoose.Schema({
     item : String
@@ -62,6 +61,6 @@ app.post("/delete", (req, res)=>{
         res.redirect("/");
     })
 })
-app.listen(port, ()=>{
+app.listen(process.env.PORT  || port, ()=>{
     console.log(`server started at port ${port}`);
 });
